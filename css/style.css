@@ -45,6 +45,19 @@ main {
   padding: 2rem;
 }
 
+#hero {
+  text-align: center;
+  padding: 2rem 0;
+  margin-bottom: 2rem;
+}
+
+#my-library {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
 #browse {
   text-align: center;
   margin-bottom: 2rem;
@@ -92,6 +105,44 @@ nav a:hover {
   color: #722f37;
 }
 
+#hero a,
+#my-library a {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #b8865a;
+  color: #fffaf2;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+#hero a:hover,
+#my-library a:hover {
+  background-color: #722f37;
+}
+
+#hero img {
+  display: block;
+  width: 320px;
+  max-width: 100%;
+  margin: 1rem auto 0;
+  border-radius: 10px;
+  border: 3px solid #b8865a;
+  box-shadow: 0 4px 15px rgba(80, 60, 40, 0.1);
+}
+
+#search {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+#search label,
+#sort-options label {
+  color: #1a3b5d;
+  font-family: "Playfair Display", serif;
+}
+
 #search input,
 #sort-select {
   font-family: "Crimson Pro", serif;
@@ -101,6 +152,16 @@ nav a:hover {
   border-radius: 6px;
   background-color: #fffaf2;
   color: #2e2a26;
+}
+
+#search input {
+  width: 100%;
+}
+
+#search input:focus,
+#sort-select:focus {
+  outline: 2px solid #b8865a;
+  outline-offset: 2px;
 }
 
 details {
@@ -136,18 +197,6 @@ details summary::-webkit-details-marker {
 }
 
 .filter-options label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.25rem 0.5rem;
-  cursor: pointer;
-}
-
-details[open] label {
-  display: inline-flex;
-}
-
-details label {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
@@ -195,28 +244,6 @@ details label {
   border-radius: 12px;
   font-size: 0.85rem;
   margin: 0.25rem 0.25rem 0 0;
-}
-
-#search {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-#search label,
-#sort-options label {
-  color: #1a3b5d;
-  font-family: display;
-}
-
-#search input {
-  width: 100%;
-}
-
-#search input:focus,
-#sort-select:focus {
-  outline: 2px solid #b8865a;
-  outline-offset: 2px;
 }
 
 /*# sourceMappingURL=style.css.map */
