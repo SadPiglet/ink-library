@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browse Inks - Ink Library</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+
+<body>
+  <header>
+    <nav aria-label="Main Navigation">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="browse.html">Browse</a></li>
+        <li><a href="my-library.html">My Library</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="browse">
+      <h1>Browse All Inks</h1>
+      <p>Explore our collection of fountain pen inks.<br> Discover, filter and sort the ink collection.</p>
+    </section>
+
+    <section id="ink-filters">
+      <div id="search">
+        <label for="search-input">Search by Name:</label>
+        <input type="text" id="search-input" placeholder="Enter ink name...">
+      </div>
+
+      <div id="colour-filter">
+        <!-- Colour filters blir genererade här av JS -->
+      </div>
+
+      <div id="effect-filter">
+        <!-- Effect filters blir genererade här av JS -->
+      </div>
+
+      <div id="shading-filter">
+        <!-- Shading filters blir genererade här av JS -->
+      </div>
+
+      <div id="sort-options">
+        <label for="sort-select">Sort by:</label>
+        <select id="sort-select">
+          <option value="name-asc">Name (A-Z)</option>
+          <option value="name-desc">Name (Z-A)</option>
+          <option value="brand-asc">Brand (A-Z)</option>
+          <option value="brand-desc">Brand (Z-A)</option>
+        </select>
+      </div>
+
+    </section>
+
+    <section id="browse-inks">
+      <!-- Inks will be dynamically loaded here -->
+    </section>
+  </main>
+
+
+  <footer>
+    <p>SadPiglet - 2026</p>
+  </footer>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/app.js"></script>
+</body>
+</html>

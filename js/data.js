@@ -1,0 +1,32 @@
+const inkDatabase = [
+  {
+    brand: "Wearingeul",
+    name: "The Phantom at the Opera",
+    colour: "Blue",
+    shimmer: false,
+    sheen: true,
+    shading: "Low",
+    sheenColour: "Red",
+    shimmerColour: null,
+  },
+  {
+    brand: "Wearingeul",
+    name: "I Am a Cat",
+    colour: "Grey",
+    shimmer: true,
+    sheen: false,
+    shading: "Low",
+    sheenColour: null,
+    shimmerColour: "Gold",
+  },
+  {
+    brand: "Diamine",
+    name: "Burnt Sienna",
+    colour: "Brown",
+    shimmer: false,
+    sheen: false,
+    shading: "Medium",
+    sheenColour: null,
+    shimmerColour: null,
+  },
+];
