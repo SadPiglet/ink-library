@@ -53,6 +53,16 @@ main {
 #ink-filters {
   max-width: 900px;
   margin: 2rem auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+#sort-options {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 #browse-inks {
@@ -109,18 +119,28 @@ details summary::-webkit-details-marker {
   display: none;
 }
 
-details[open] summary {
-  width: 100%;
-}
-
-details[open] {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem 0.5rem;
+.filter-options {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  left: 0;
+  z-index: 10;
+  min-width: 220px;
+  padding: 0.5rem;
   background-color: #fffaf2;
   border: 1px solid rgba(120, 100, 80, 0.25);
   border-radius: 8px;
-  padding: 0.5rem;
+  box-shadow: 0 4px 15px rgba(80, 60, 40, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.5rem;
+}
+
+.filter-options label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
 }
 
 details[open] label {
@@ -175,6 +195,28 @@ details label {
   border-radius: 12px;
   font-size: 0.85rem;
   margin: 0.25rem 0.25rem 0 0;
+}
+
+#search {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+#search label,
+#sort-options label {
+  color: #1a3b5d;
+  font-family: display;
+}
+
+#search input {
+  width: 100%;
+}
+
+#search input:focus,
+#sort-select:focus {
+  outline: 2px solid #b8865a;
+  outline-offset: 2px;
 }
 
 /*# sourceMappingURL=style.css.map */

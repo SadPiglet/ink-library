@@ -65,8 +65,10 @@ colours.forEach((colour) => {
   colourLabel.textContent = colour;
   colourLabel.setAttribute("for", colour);
 
-  colourFilters.appendChild(colourInput);
-  colourFilters.appendChild(colourLabel);
+  const colourOptions = colourFilters.querySelector(".filter-options");
+
+  colourOptions.appendChild(colourInput);
+  colourOptions.appendChild(colourLabel);
 });
 
 const colourInputs = document.querySelectorAll('input[name="colour"]');
@@ -93,8 +95,9 @@ effects.forEach((effect) => {
   effectLabel.textContent = effect;
   effectLabel.setAttribute("for", effect);
 
-  effectFilters.appendChild(effectInput);
-  effectFilters.appendChild(effectLabel);
+  const effectsOptions = effectFilters.querySelector(".filter-options");
+  effectsOptions.appendChild(effectInput);
+  effectsOptions.appendChild(effectLabel);
 });
 
 const effectInputs = document.querySelectorAll('input[name="effect"]');
@@ -121,8 +124,9 @@ shadingLevels.forEach((level) => {
   shadingLabel.textContent = level;
   shadingLabel.setAttribute("for", level);
 
-  shadingFilters.appendChild(shadingInput);
-  shadingFilters.appendChild(shadingLabel);
+  const shadingOptions = shadingFilters.querySelector(".filter-options");
+  shadingOptions.appendChild(shadingInput);
+  shadingOptions.appendChild(shadingLabel);
 });
 
 const shadingInputs = document.querySelectorAll('input[name="shading"]');
@@ -130,6 +134,21 @@ const shadingInputs = document.querySelectorAll('input[name="shading"]');
 shadingInputs.forEach((input) => {
   input.addEventListener("change", () => {
     filterInks();
+  });
+});
+
+//
+
+const filterDropdowns = document.querySelectorAll("#ink-filters details");
+filterDropdowns.forEach((dropdown) => {
+  dropdown.addEventListener("toggle", () => {
+    if (dropdown.open) {
+      filterDropdowns.forEach((otherDropdown) => {
+        if (otherDropdown !== dropdown) {
+          otherDropdown.removeAttribute("open");
+        }
+      });
+    }
   });
 });
 

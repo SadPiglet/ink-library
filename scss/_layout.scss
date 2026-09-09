@@ -31,6 +31,16 @@ main {
 #ink-filters {
   max-width: 900px;
   margin: $spacing-large auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-medium;
+  align-items: center;
+}
+
+#sort-options {
+  display: flex;
+  align-items: center;
+  gap: $spacing-small;
 }
 
 #browse-inks {

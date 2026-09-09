@@ -41,18 +41,31 @@ details summary::-webkit-details-marker {
   display: none;
 }
 
-details[open] summary {
-  width: 100%;
-}
+.filter-options {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  left: 0;
+  z-index: 10;
 
-details[open] {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem 0.5rem;
+  min-width: 220px;
+  padding: $spacing-small;
+
   background-color: $color-card;
   border: 1px solid $color-border;
   border-radius: 8px;
-  padding: $spacing-small;
+  box-shadow: 0 4px 15px rgba(80, 60, 40, 0.1);
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.5rem;
+}
+
+.filter-options label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
 }
 
 details[open] label {
@@ -107,4 +120,28 @@ details label {
   border-radius: 12px;
   font-size: 0.85rem;
   margin: 0.25rem 0.25rem 0 0;
+}
+
+// ==== SEARCH OCH SORT ====
+
+#search {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+#search label,
+#sort-options label {
+  color: $color-heading;
+  font-family: display;
+}
+
+#search input {
+  width: 100%;
+}
+
+#search input:focus,
+#sort-select:focus {
+  outline: 2px solid $color-accent;
+  outline-offset: 2px;
 }
