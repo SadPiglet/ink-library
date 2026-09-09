@@ -38,7 +38,7 @@ main {
   padding: $spacing-large;
 }
 
-
+// ==== BROWSE PAGE ====
 #browse {
   text-align: center;
   margin-bottom: $spacing-large;
@@ -68,4 +68,28 @@ main {
 footer {
   padding: $spacing-large;
   text-align: center;
+}
+
+// ==== MY LIBRARY PAGE ====
+
+#library {
+  text-align: center;
+}
+
+#library-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-medium;
+  max-width: 1000px;
+  margin: $spacing-large auto;
+}
+
+.currently-inked,
+.favourite {
+  grid-column: 1/ -1;
+}
+
+.owned,
+.wishlist {
+  min-height: 300px;
 }

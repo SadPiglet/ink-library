@@ -89,6 +89,28 @@ footer {
   text-align: center;
 }
 
+#library {
+  text-align: center;
+}
+
+#library-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  max-width: 1000px;
+  margin: 2rem auto;
+}
+
+.currently-inked,
+.favourite {
+  grid-column: 1/-1;
+}
+
+.owned,
+.wishlist {
+  min-height: 300px;
+}
+
 .logo {
   font-family: "Playfair Display", serif;
   font-size: 1.8rem;
@@ -191,16 +213,22 @@ details summary::-webkit-details-marker {
   border: 1px solid rgba(120, 100, 80, 0.25);
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(80, 60, 40, 0.1);
+}
+
+.filter-options ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.filter-options li {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem 0.5rem;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.25rem;
 }
 
 .filter-options label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.25rem 0.5rem;
   cursor: pointer;
 }
 

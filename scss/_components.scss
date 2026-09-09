@@ -102,22 +102,26 @@ details summary::-webkit-details-marker {
   z-index: 10;
   min-width: 220px;
   padding: $spacing-small;
-
   background-color: $color-card;
   border: 1px solid $color-border;
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(80, 60, 40, 0.1);
+}
 
+.filter-options ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.filter-options li {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem 0.5rem;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.25rem;
 }
 
 .filter-options label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.25rem 0.5rem;
   cursor: pointer;
 }
 

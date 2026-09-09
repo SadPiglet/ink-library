@@ -47,8 +47,8 @@ function renderInks(inks) {
 renderInks(inkDatabase);
 
 // ==== Skapa filter för färger ====
-const colourFilters = document.querySelector("#colour-filter");
 
+const colourFilters = document.querySelector("#colour-filter");
 const colours = new Set(
   inkDatabase.map((ink) => ink.colour)
 );
@@ -56,6 +56,7 @@ const colours = new Set(
 colours.forEach((colour) => {
   const colourInput = document.createElement("input");
   const colourLabel = document.createElement("label");
+  const colourItem = document.createElement("li");
 
   colourInput.type = "checkbox";
   colourInput.id = colour;
@@ -65,27 +66,31 @@ colours.forEach((colour) => {
   colourLabel.textContent = colour;
   colourLabel.setAttribute("for", colour);
 
-  const colourOptions = colourFilters.querySelector(".filter-options");
+  colourItem.appendChild(colourInput);
+  colourItem.appendChild(colourLabel);
 
-  colourOptions.appendChild(colourInput);
-  colourOptions.appendChild(colourLabel);
+  const colourOptions = colourFilters.querySelector("ul");
+  colourOptions.appendChild(colourItem);
 });
 
 const colourInputs = document.querySelectorAll('input[name="colour"]');
+
 colourInputs.forEach((input) => {
   input.addEventListener("change", () => {
     filterInks();
   });
 });
 
-// ==== Skapa filter för effects ====
-const effectFilters = document.querySelector("#effect-filter");
 
+// ==== Skapa filter för effects ====
+
+const effectFilters = document.querySelector("#effect-filter");
 const effects = ["Shimmer", "Sheen"];
 
 effects.forEach((effect) => {
   const effectInput = document.createElement("input");
   const effectLabel = document.createElement("label");
+  const effectItem = document.createElement("li");
 
   effectInput.type = "checkbox";
   effectInput.id = effect;
@@ -95,12 +100,15 @@ effects.forEach((effect) => {
   effectLabel.textContent = effect;
   effectLabel.setAttribute("for", effect);
 
-  const effectsOptions = effectFilters.querySelector(".filter-options");
-  effectsOptions.appendChild(effectInput);
-  effectsOptions.appendChild(effectLabel);
+  effectItem.appendChild(effectInput);
+  effectItem.appendChild(effectLabel);
+
+  const effectsOptions = effectFilters.querySelector("ul");
+  effectsOptions.appendChild(effectItem);
 });
 
 const effectInputs = document.querySelectorAll('input[name="effect"]');
+
 effectInputs.forEach((input) => {
   input.addEventListener("change", () => {
     filterInks();
@@ -108,13 +116,14 @@ effectInputs.forEach((input) => {
 });
 
 // ==== Skapa filter för shading ====
-const shadingFilters = document.querySelector("#shading-filter");
 
+const shadingFilters = document.querySelector("#shading-filter");
 const shadingLevels = ["Low", "Medium", "High"];
 
 shadingLevels.forEach((level) => {
   const shadingInput = document.createElement("input");
   const shadingLabel = document.createElement("label");
+  const shadingItem = document.createElement("li");
 
   shadingInput.type = "checkbox";
   shadingInput.id = level;
@@ -124,9 +133,11 @@ shadingLevels.forEach((level) => {
   shadingLabel.textContent = level;
   shadingLabel.setAttribute("for", level);
 
-  const shadingOptions = shadingFilters.querySelector(".filter-options");
-  shadingOptions.appendChild(shadingInput);
-  shadingOptions.appendChild(shadingLabel);
+  shadingItem.appendChild(shadingInput);
+  shadingItem.appendChild(shadingLabel);
+
+  const shadingOptions = shadingFilters.querySelector("ul");
+  shadingOptions.appendChild(shadingItem);
 });
 
 const shadingInputs = document.querySelectorAll('input[name="shading"]');
