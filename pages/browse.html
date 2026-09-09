@@ -11,6 +11,8 @@
 <body>
   <header>
     <nav aria-label="Main Navigation">
+      <a href="index.html" class="logo">Ink Library</a>
+
       <ul>
         <li><a href="../index.html">Home</a></li>
         <li><a href="browse.html">Browse</a></li>
@@ -32,17 +34,17 @@
         <input type="text" id="search-input" placeholder="Enter ink name...">
       </div>
 
-      <div id="colour-filter">
-        <!-- Colour filters blir genererade här av JS -->
-      </div>
+      <details id="colour-filter">
+        <summary>Colour</summary>
+      </details>
 
-      <div id="effect-filter">
-        <!-- Effect filters blir genererade här av JS -->
-      </div>
+      <details id="effect-filter">
+        <summary>Effects</summary>
+      </details>
 
-      <div id="shading-filter">
-        <!-- Shading filters blir genererade här av JS -->
-      </div>
+      <details id="shading-filter">
+        <summary>Shading</summary>
+      </details>
 
       <div id="sort-options">
         <label for="sort-select">Sort by:</label>

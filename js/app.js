@@ -8,13 +8,20 @@ function renderInks(inks) {
     const inkCard = document.createElement("div");
     const inkName = document.createElement("h3");
     const colour = document.createElement("p");
-    const shading = document.createElement("p");
+    const colourSwatch= document.createElement("span");
+    const shading = document.createElement("span");
 
     inkCard.classList.add("ink-card");
 
     inkName.textContent = `${ink.brand} - ${ink.name}`;
     colour.textContent = `Colour: ${ink.colour}`;
-    shading.textContent = `Shading: ${ink.shading}`;
+    colourSwatch.classList.add("ink-swatch");
+    
+    shading.classList.add("tag");
+    shading.textContent = `Shading · ${ink.shading}`;
+
+    colour.prepend(colourSwatch);
+    colourSwatch.style.backgroundColor = ink.colour;
 
     browseInks.appendChild(inkCard);
     inkCard.appendChild(inkName);
@@ -22,14 +29,16 @@ function renderInks(inks) {
     inkCard.appendChild(shading);
 
     if (ink.shimmer) {
-      const shimmer = document.createElement("p");
-      shimmer.textContent = `Shimmer: Yes (${ink.shimmerColour})`;
+      const shimmer = document.createElement("span");
+      shimmer.classList.add("tag");
+      shimmer.textContent = `Shimmer · ${ink.shimmerColour}`;
       inkCard.appendChild(shimmer);
     }
 
     if (ink.sheen) {
-      const sheen = document.createElement("p");
-      sheen.textContent = `Sheen: Yes (${ink.sheenColour})`;
+      const sheen = document.createElement("span");
+      sheen.classList.add("tag");
+      sheen.textContent = `Sheen · ${ink.sheenColour}`;
       inkCard.appendChild(sheen);
     }
   });
