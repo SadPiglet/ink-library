@@ -118,7 +118,7 @@ effectInputs.forEach((input) => {
 // ==== Skapa filter för shading ====
 
 const shadingFilters = document.querySelector("#shading-filter");
-const shadingLevels = ["Low", "Medium", "High"];
+const shadingLevels = ["None", "Low", "Medium", "High"];
 
 shadingLevels.forEach((level) => {
   const shadingInput = document.createElement("input");
