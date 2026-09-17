@@ -93,3 +93,28 @@ footer {
 .wishlist {
   min-height: 300px;
 }
+
+.library-section {
+  background-color: $color-card;
+  border: 1px solid $color-border;
+  border-radius: 12px;
+  padding: $spacing-large;
+  box-shadow: 0 2px 10px rgba(80, 60, 40, 0.06);
+}
+
+.library-section h2 {
+  margin-bottom: $spacing-small;
+}
+
+.library-section p {
+  margin-bottom: $spacing-medium;
+}
+
+.library-section a {
+  color: $color-accent;
+  text-decoration: none;
+}
+
+.library-section a:hover {
+  color: $color-wine;
+}

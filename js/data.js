@@ -1,4 +1,5 @@
 const inkDatabase = [
+  // ==== Wearingeul Inks ====
   {
     brand: "Wearingeul",
     name: "The Phantom at the Opera",
@@ -13,6 +14,16 @@ const inkDatabase = [
     brand: "Wearingeul",
     name: "I Am a Cat",
     colour: "Grey",
+    shimmer: true,
+    sheen: false,
+    shading: "Low",
+    sheenColour: null,
+    shimmerColour: "Gold",
+  },
+  {
+    brand: "Wearingeul",
+    name: "Juliet",
+    colour: "Pink",
     shimmer: true,
     sheen: false,
     shading: "Low",
