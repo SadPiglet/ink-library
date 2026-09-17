@@ -136,6 +136,15 @@ footer {
   color: #722f37;
 }
 
+@media (max-width: 600px) {
+  #library-cards {
+    grid-template-columns: 1fr;
+  }
+  .currently-inked,
+  .favourite {
+    grid-column: auto;
+  }
+}
 .logo {
   font-family: "Playfair Display", serif;
   font-size: 1.8rem;

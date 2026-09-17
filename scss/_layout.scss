@@ -118,3 +118,16 @@ footer {
 .library-section a:hover {
   color: $color-wine;
 }
+
+// ==== MEDIA QUERIES ====
+
+@media (max-width: 600px) {
+  #library-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .currently-inked,
+  .favourite {
+    grid-column: auto;
+  }
+}
