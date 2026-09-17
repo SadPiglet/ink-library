@@ -11,6 +11,13 @@ function renderInks(inks) {
     const colourSwatch= document.createElement("span");
     const shading = document.createElement("span");
 
+    // Knappar
+    const wishlistBtn = document.createElement("button");
+    const ownedBtn = document.createElement("button");
+
+    wishlistBtn.textContent = "♡ Wishlist";
+    ownedBtn.textContent = "＋ Add to Library";
+
     inkCard.classList.add("ink-card");
 
     inkName.textContent = `${ink.brand} - ${ink.name}`;
@@ -28,6 +35,7 @@ function renderInks(inks) {
     inkCard.appendChild(colour);
     inkCard.appendChild(shading);
 
+
     if (ink.shimmer) {
       const shimmer = document.createElement("span");
       shimmer.classList.add("tag");
@@ -41,7 +49,50 @@ function renderInks(inks) {
       sheen.textContent = `Sheen · ${ink.sheenColour}`;
       inkCard.appendChild(sheen);
     }
+
+    inkCard.appendChild(wishlistBtn);
+    inkCard.appendChild(ownedBtn);
+
+    wishlistBtn.addEventListener("click", () => {
+      if (myLibrary.wishlist.includes(ink.id)) {
+        myLibrary.wishlist = myLibrary.wishlist.filter((id) => id !== ink.id);
+      } else {
+        myLibrary.wishlist.push(ink.id);
+      }
+
+      myLibrary.owned = myLibrary.owned.filter((id) => id !== ink.id);
+
+      updateLibraryButtons(ink, wishlistBtn, ownedBtn);
+    });
+
+    ownedBtn.addEventListener("click", () => {
+      if (myLibrary.owned.includes(ink.id)) {
+        myLibrary.owned = myLibrary.owned.filter((id) => id !== ink.id);
+      } else {
+        myLibrary.owned.push(ink.id);
+      }
+
+      myLibrary.wishlist = myLibrary.wishlist.filter((id) => id !== ink.id);
+
+      updateLibraryButtons(ink, wishlistBtn, ownedBtn);  
+    });
+
+    updateLibraryButtons(ink, wishlistBtn, ownedBtn);
   });
+}
+
+function updateLibraryButtons(ink, wishlistBtn, ownedBtn) {
+  if (myLibrary.wishlist.includes(ink.id)) {
+    wishlistBtn.textContent = "♥ Wishlisted";
+  } else {
+    wishlistBtn.textContent = "♡ Wishlist";
+  }
+
+  if (myLibrary.owned.includes(ink.id)) {
+    ownedBtn.textContent = "✓ In my Library";
+  } else {
+    ownedBtn.textContent = "＋ Add to Library";
+  }
 }
 
 renderInks(inkDatabase);

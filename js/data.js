@@ -1,6 +1,7 @@
 const inkDatabase = [
   // ==== Wearingeul Inks ====
   {
+    id: 1,
     brand: "Wearingeul",
     name: "The Phantom at the Opera",
     colour: "Blue",
@@ -11,6 +12,7 @@ const inkDatabase = [
     shimmerColour: null,
   },
   {
+    id: 2,
     brand: "Wearingeul",
     name: "I Am a Cat",
     colour: "Grey",
@@ -21,6 +23,7 @@ const inkDatabase = [
     shimmerColour: "Gold",
   },
   {
+    id: 3,
     brand: "Wearingeul",
     name: "Juliet",
     colour: "Pink",
@@ -32,6 +35,7 @@ const inkDatabase = [
   },
   // ==== Diamine inks ====
   {
+    id: 4,
     brand: "Diamine",
     name: "Burnt Sienna",
     colour: "Brown",
@@ -42,6 +46,7 @@ const inkDatabase = [
     shimmerColour: null,
   },
   {
+    id: 5,
     brand: "Diamine",
     name: "Denim",
     colour: "Blue",
@@ -52,6 +57,7 @@ const inkDatabase = [
     shimmerColour: null,
   },
   {
+    id: 6,
     brand: "Diamine",
     name: "Monboddo's Hat",
     colour: "Purple",
@@ -62,6 +68,7 @@ const inkDatabase = [
     shimmerColour: null,
   },
   {
+    id: 7,
     brand: "Diamine",
     name: "Vermillion",
     colour: "Red",
@@ -72,6 +79,7 @@ const inkDatabase = [
     shimmerColour: null,
   },
   {
+    id: 8,
     brand: "Diamine",
     name: "Red Dragon",
     colour: "Red",
@@ -82,6 +90,7 @@ const inkDatabase = [
     shimmerColour: null,
   },
   {
+    id: 9,
     brand: "Diamine",
     name: "Delamere Green",
     colour: "Green",
@@ -93,6 +102,7 @@ const inkDatabase = [
   },
   // ==== Octopus Fluids inks ==== 
   {
+    id: 10,
     brand: "Octopus Fluids",
     name: "Goblin",
     colour: "Green",
@@ -103,6 +113,7 @@ const inkDatabase = [
     shimmerColour: null,
   },
   {
+    id: 11,
     brand: "Octopus Fluids",
     name: "Dragon",
     colour: "Teal",
@@ -113,3 +124,11 @@ const inkDatabase = [
     shimmerColour: null,
   }
 ];
+
+// ==== MY LIBRARY DATABASE ====
+const myLibrary = {
+  owned: [],
+  wishlist: [],
+  currentlyInked: [],
+  favouriteOfTheMonth: null,
+};
