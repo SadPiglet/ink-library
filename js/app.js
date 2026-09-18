@@ -398,50 +398,6 @@ function initWishlist() {
   renderInks(wishlist, wishlistContainer);
 }
 
-// ==== 7. Contact form specifik kod ====
-function initContactForm() {
-  const contactForm = document.querySelector("#contact-form");
-
-  contactForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-
-    const formData = new FormData(contactForm);
-    const subject = formData.get("subject");
-
-    const data = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      subject: subject,
-      message: formData.get("message"),
-      _subject: subject,
-      _captcha: "false",
-    };
-
-    try {
-      const response = await fetch(
-        "https://formsubmit.co/ajax/ff911899558c73f8ac6cc62d804c0f9d",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify(data),
-        }
-      );
-
-      if (response.ok) {
-        window.location.href =
-          "https://sadpiglet.github.io/ink-library/index.html";
-      }
-    } catch (error) {
-      console.error("Form submission failed:", error);
-    }
-  });
-}
-
-if (document.querySelector("#contact-form")) initContactForm();
-
 if (document.querySelector("#browse-inks")) {
   initBrowse();
 }
