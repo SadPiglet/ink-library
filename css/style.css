@@ -281,6 +281,13 @@ details summary::-webkit-details-marker {
 .ink-card p {
   margin-bottom: 0.25rem;
 }
+.ink-card button {
+  margin-top: 0.5rem;
+  margin-right: 0.5rem;
+}
+.ink-card .ink-card-actions {
+  text-align: center;
+}
 
 .ink-swatch {
   display: inline-block;
@@ -333,6 +340,25 @@ details summary::-webkit-details-marker {
   background-color: #f7f0e6;
   border: 1px solid rgba(120, 100, 80, 0.25);
   border-radius: 6px;
+}
+
+.ink-card button {
+  font-family: "Crimson Pro", serif;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #b8865a;
+  color: #fffaf2;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.ink-card button:hover {
+  background-color: #722f37;
+}
+.ink-card button:focus-visible {
+  outline: 2px solid #b8865a;
+  outline-offset: 2px;
 }
 
 /*# sourceMappingURL=style.css.map */

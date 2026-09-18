@@ -148,6 +148,15 @@ details summary::-webkit-details-marker {
   p {
     margin-bottom: 0.25rem;
   }
+
+  button {
+  margin-top: $spacing-small;
+  margin-right: $spacing-small;
+  }
+
+  .ink-card-actions {
+    text-align: center;
+  }
 }
 
 // ==== INK SWATCH ====
@@ -201,7 +210,6 @@ details summary::-webkit-details-marker {
   }
 }
 
-
 .ink-preview {
   display: grid;
   gap: $spacing-small;
@@ -212,5 +220,28 @@ details summary::-webkit-details-marker {
     background-color: $color-background;
     border: 1px solid $color-border;
     border-radius: 6px;
+  }
+}
+
+// ==== KNAPPAR ====
+
+.ink-card button {
+  font-family: $font-main;
+  font-size: 1rem;
+  padding: $spacing-small $spacing-medium;
+  background-color: $color-accent;
+  color: $color-card;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: $color-wine;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-accent;
+    outline-offset: 2px;
   }
 }

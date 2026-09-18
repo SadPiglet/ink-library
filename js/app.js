@@ -14,6 +14,9 @@ function renderInks(inks, container, showCurrentlyInked = false) {
     const wishlistBtn = document.createElement("button");
     const ownedBtn = document.createElement("button");
 
+    const cardActions = document.createElement("div");
+    cardActions.classList.add("ink-card-actions");
+
     wishlistBtn.textContent = "♡ Wishlist";
     ownedBtn.textContent = "＋ Add to Library";
 
@@ -49,8 +52,8 @@ function renderInks(inks, container, showCurrentlyInked = false) {
       inkCard.appendChild(sheen);
     }
 
-    inkCard.appendChild(wishlistBtn);
-    inkCard.appendChild(ownedBtn);
+    cardActions.appendChild(wishlistBtn);
+    cardActions.appendChild(ownedBtn);
     
     if (showCurrentlyInked) {
       const currentlyInkedBtn = document.createElement("button");
@@ -61,7 +64,7 @@ function renderInks(inks, container, showCurrentlyInked = false) {
         currentlyInkedBtn.textContent = "Remove from pen";
       }
 
-      inkCard.appendChild(currentlyInkedBtn);
+      cardActions.appendChild(currentlyInkedBtn);
 
       currentlyInkedBtn.addEventListener("click", () => {
         if (myLibrary.currentlyInked.includes(ink.id)) {
@@ -81,7 +84,7 @@ function renderInks(inks, container, showCurrentlyInked = false) {
       
     }
 
-
+    inkCard.appendChild(cardActions);
 
     wishlistBtn.addEventListener("click", () => {
       if (myLibrary.wishlist.includes(ink.id)) {
