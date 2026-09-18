@@ -140,6 +140,6 @@ function saveLibrary() {
 
 const savedLibrary = localStorage.getItem("myLibrary");
 
-if (saveLibrary) {
+if (savedLibrary) {
   myLibrary = JSON.parse(savedLibrary);
 }
