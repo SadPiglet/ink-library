@@ -256,3 +256,67 @@ details summary::-webkit-details-marker {
     outline-offset: 2px;
   }
 }
+
+// CONTACT FORM
+
+#contact {
+  form {
+    max-width: 700px;
+    margin: $spacing-large auto;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-medium;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-small;
+    }
+
+    label {
+      font-family: $font-display;
+      color: $color-heading;
+    }
+
+    input,
+    textarea {
+      font-family: $font-main;
+      font-size: 1rem;
+      padding: $spacing-small $spacing-medium;
+      border: 1px solid $color-border;
+      border-radius: 6px;
+      background-color: $color-card;
+      color: $color-text;
+
+      &:focus {
+        outline: 2px solid $color-accent;
+        outline-offset: 2px;
+      }
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    button {
+      align-self: flex-start;
+      font-family: $font-main;
+      font-size: 1rem;
+      padding: $spacing-small $spacing-medium;
+      background-color: $color-accent;
+      color: $color-card;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $color-wine;
+      }
+
+      &:focus-visible {
+        outline: 2px solid $color-accent;
+        outline-offset: 2px;
+      }
+    }
+  }
+}

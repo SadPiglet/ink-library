@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Ink Library</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <header>
+    <nav aria-label="Main Navigation">
+      <a href="../index.html" class="logo">Ink Library</a>
+
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="browse.html">Browse</a></li>
+        <li><a href="my-library.html">My Library</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+  </header>
+
+  <main>
+    <section id="contact">
+      <h1>Contact</h1>
+      <p>Have a question, suggestion or feedback? Get in touch!</p>
+      <form action="https://formsubmit.co/sadpiglet.code@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New message from Ink Library">
+        
+        <div>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+
+        <div>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+
+        <div>
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject" required>
+        </div>
+
+        <div>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="6" required></textarea>
+        </div>
+
+        <button type="submit">Send Message</button>
+      </form>
+  </section>
+
+  </main>
+
+  <footer>
+    <p>SadPiglet - 2026</p>
+  </footer>
+</body>
+</html>
