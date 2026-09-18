@@ -119,6 +119,20 @@ footer {
   color: $color-wine;
 }
 
+//==== OWNED OCH WISHLIST ====
+#owned-inks,
+#wishlist-inks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 350px));
+  gap: $spacing-medium;
+}
+
+// ==== CURRENTLY INKED ====
+#currently-inked-inks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 350px));
+  gap: $spacing-medium;
+}
 // ==== MEDIA QUERIES ====
 
 @media (max-width: 600px) {

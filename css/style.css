@@ -136,6 +136,19 @@ footer {
   color: #722f37;
 }
 
+#owned-inks,
+#wishlist-inks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 350px));
+  gap: 1rem;
+}
+
+#currently-inked-inks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 350px));
+  gap: 1rem;
+}
+
 @media (max-width: 600px) {
   #library-cards {
     grid-template-columns: 1fr;
@@ -336,9 +349,14 @@ details summary::-webkit-details-marker {
 }
 
 .ink-preview {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 0.5rem;
   margin: 1rem 0;
+}
+.ink-preview .ink-card {
+  flex: 0 1 350px;
 }
 .ink-preview p {
   padding: 0.5rem;

@@ -216,9 +216,15 @@ details summary::-webkit-details-marker {
 }
 
 .ink-preview {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: $spacing-small;
   margin: $spacing-medium 0;
+
+  .ink-card {
+    flex: 0 1 350px;
+  }
 
   p {
     padding: $spacing-small;

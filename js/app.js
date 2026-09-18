@@ -390,6 +390,14 @@ function initCurrentlyInked() {
   renderInks(currentlyInked, currentlyInkedContainer, true);
 }
 
+// ==== 6. Wishlist specifik kod ====
+function initWishlist() {
+  const wishlistContainer = document.querySelector("#wishlist-inks");
+  const wishlist = getInksByIds(myLibrary.wishlist);
+
+  renderInks(wishlist, wishlistContainer);
+}
+
 if (document.querySelector("#browse-inks")) {
   initBrowse();
 }
@@ -404,4 +412,8 @@ if (document.querySelector("#owned-inks")) {
 
 if (document.querySelector("#currently-inked-inks")) {
   initCurrentlyInked();
+}
+
+if (document.querySelector("#wishlist-inks")) {
+  initWishlist();
 }
