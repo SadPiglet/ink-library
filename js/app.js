@@ -1,9 +1,8 @@
-// Skapa ink cards för varje bläck i databasen
+// ==== 1. Gemensamma funktioner ====
 
-const browseInks = document.querySelector("#browse-inks");
-
-function renderInks(inks) {
-  browseInks.textContent = "";
+// Skapa och rendera ink cards
+function renderInks(inks, container) {
+  container.textContent = "";
   inks.forEach((ink) => {
     const inkCard = document.createElement("div");
     const inkName = document.createElement("h3");
@@ -30,7 +29,7 @@ function renderInks(inks) {
     colour.prepend(colourSwatch);
     colourSwatch.style.backgroundColor = ink.colour;
 
-    browseInks.appendChild(inkCard);
+    container.appendChild(inkCard);
     inkCard.appendChild(inkName);
     inkCard.appendChild(colour);
     inkCard.appendChild(shading);
@@ -62,6 +61,8 @@ function renderInks(inks) {
 
       myLibrary.owned = myLibrary.owned.filter((id) => id !== ink.id);
 
+      saveLibrary();
+
       updateLibraryButtons(ink, wishlistBtn, ownedBtn);
     });
 
@@ -74,6 +75,8 @@ function renderInks(inks) {
 
       myLibrary.wishlist = myLibrary.wishlist.filter((id) => id !== ink.id);
 
+      saveLibrary();
+
       updateLibraryButtons(ink, wishlistBtn, ownedBtn);  
     });
 
@@ -81,6 +84,22 @@ function renderInks(inks) {
   });
 }
 
+// Hämta bläck utifrån ID:n
+function getInksByIds(ids) {
+  return inkDatabase.filter((ink) => ids.includes(ink.id));
+}
+
+// Visa meddelande när en biblioteksektion är tom
+function renderEmptyState(inks, container, message) {
+  if (inks.length === 0) {
+    container.textContent = message;
+    return true;
+  }
+
+  return false;
+}
+
+// Uppdatera Wishlist- och Owned-knappar
 function updateLibraryButtons(ink, wishlistBtn, ownedBtn) {
   if (myLibrary.wishlist.includes(ink.id)) {
     wishlistBtn.textContent = "♥ Wishlisted";
@@ -95,198 +114,235 @@ function updateLibraryButtons(ink, wishlistBtn, ownedBtn) {
   }
 }
 
-renderInks(inkDatabase);
+// ==== 2. Browse-specifik kod ====
+function initBrowse() {
+  const browseInks = document.querySelector("#browse-inks");
 
-// ==== Skapa filter för färger ====
+  // Rendera bläcken
+  renderInks(inkDatabase, browseInks);
 
-const colourFilters = document.querySelector("#colour-filter");
-const colours = new Set(
-  inkDatabase.map((ink) => ink.colour)
-);
+  // Färgfilter
+  const colourFilters = document.querySelector("#colour-filter");
+  const colours = new Set(
+    inkDatabase.map((ink) => ink.colour)
+  );
 
-colours.forEach((colour) => {
-  const colourInput = document.createElement("input");
-  const colourLabel = document.createElement("label");
-  const colourItem = document.createElement("li");
+  colours.forEach((colour) => {
+    const colourInput = document.createElement("input");
+    const colourLabel = document.createElement("label");
+    const colourItem = document.createElement("li");
 
-  colourInput.type = "checkbox";
-  colourInput.id = colour;
-  colourInput.name = "colour";
-  colourInput.value = colour;
+    colourInput.type = "checkbox";
+    colourInput.id = colour;
+    colourInput.name = "colour";
+    colourInput.value = colour;
 
-  colourLabel.textContent = colour;
-  colourLabel.setAttribute("for", colour);
+    colourLabel.textContent = colour;
+    colourLabel.setAttribute("for", colour);
 
-  colourItem.appendChild(colourInput);
-  colourItem.appendChild(colourLabel);
+    colourItem.appendChild(colourInput);
+    colourItem.appendChild(colourLabel);
 
-  const colourOptions = colourFilters.querySelector("ul");
-  colourOptions.appendChild(colourItem);
-});
-
-const colourInputs = document.querySelectorAll('input[name="colour"]');
-
-colourInputs.forEach((input) => {
-  input.addEventListener("change", () => {
-    filterInks();
+    const colourOptions = colourFilters.querySelector("ul");
+    colourOptions.appendChild(colourItem);
   });
-});
 
+  const colourInputs = document.querySelectorAll('input[name="colour"]');
 
-// ==== Skapa filter för effects ====
-
-const effectFilters = document.querySelector("#effect-filter");
-const effects = ["Shimmer", "Sheen"];
-
-effects.forEach((effect) => {
-  const effectInput = document.createElement("input");
-  const effectLabel = document.createElement("label");
-  const effectItem = document.createElement("li");
-
-  effectInput.type = "checkbox";
-  effectInput.id = effect;
-  effectInput.name = "effect";
-  effectInput.value = effect;
-
-  effectLabel.textContent = effect;
-  effectLabel.setAttribute("for", effect);
-
-  effectItem.appendChild(effectInput);
-  effectItem.appendChild(effectLabel);
-
-  const effectsOptions = effectFilters.querySelector("ul");
-  effectsOptions.appendChild(effectItem);
-});
-
-const effectInputs = document.querySelectorAll('input[name="effect"]');
-
-effectInputs.forEach((input) => {
-  input.addEventListener("change", () => {
-    filterInks();
-  });
-});
-
-// ==== Skapa filter för shading ====
-
-const shadingFilters = document.querySelector("#shading-filter");
-const shadingLevels = ["None", "Low", "Medium", "High"];
-
-shadingLevels.forEach((level) => {
-  const shadingInput = document.createElement("input");
-  const shadingLabel = document.createElement("label");
-  const shadingItem = document.createElement("li");
-
-  shadingInput.type = "checkbox";
-  shadingInput.id = level;
-  shadingInput.name = "shading";
-  shadingInput.value = level;
-
-  shadingLabel.textContent = level;
-  shadingLabel.setAttribute("for", level);
-
-  shadingItem.appendChild(shadingInput);
-  shadingItem.appendChild(shadingLabel);
-
-  const shadingOptions = shadingFilters.querySelector("ul");
-  shadingOptions.appendChild(shadingItem);
-});
-
-const shadingInputs = document.querySelectorAll('input[name="shading"]');
-
-shadingInputs.forEach((input) => {
-  input.addEventListener("change", () => {
-    filterInks();
-  });
-});
-
-//
-
-const filterDropdowns = document.querySelectorAll("#ink-filters details");
-filterDropdowns.forEach((dropdown) => {
-  dropdown.addEventListener("toggle", () => {
-    if (dropdown.open) {
-      filterDropdowns.forEach((otherDropdown) => {
-        if (otherDropdown !== dropdown) {
-          otherDropdown.removeAttribute("open");
-        }
-      });
-    }
-  });
-});
-
-// ==== Skapa sökfält ====
-const searchInput = document.querySelector("#search-input");
-searchInput.addEventListener("input", () => {
-  filterInks();
-});
-
-// ==== Skapa sorteringsalternativ ====
-const sortSelect = document.querySelector("#sort-select");
-
-sortSelect.addEventListener("change", () => {
-  filterInks();
-});
-
-// ==== Filtrera bläck baserat på valda filter ====
-function filterInks() {
-
-  const searchTerm = searchInput.value.toLowerCase();
-
-  const selectedColours = Array.from(colourInputs)
-    .filter((input) => input.checked)
-    .map((input) => input.value);
-
-  const selectedEffects = Array.from(effectInputs)
-    .filter((input) => input.checked)
-    .map((input) => input.value);
-
-  const selectedShading = Array.from(shadingInputs)
-    .filter((input) => input.checked)
-    .map((input) => input.value);
-
-    const filteredInks = inkDatabase.filter((ink) => {
-      // Färg
-      const colourMatch = 
-      selectedColours.length === 0 || 
-      selectedColours.includes(ink.colour);
-
-      // Effekter
-      const effectMatch = 
-      selectedEffects.length === 0 || 
-      selectedEffects.some((effect) => {
-        if (effect === "Shimmer") return ink.shimmer;
-        if (effect === "Sheen") return ink.sheen;
-      });
-
-      // Shading
-      const shadingMatch = 
-      selectedShading.length === 0 || 
-      selectedShading.includes(ink.shading);
-
-      // Sökterm
-      const searchMatch =
-      searchTerm === "" ||
-      ink.name.toLowerCase().includes(searchTerm) ||
-      ink.brand.toLowerCase().includes(searchTerm);
-
-      return colourMatch && effectMatch && shadingMatch && searchMatch;
-
+  colourInputs.forEach((input) => {
+    input.addEventListener("change", () => {
+      filterInks();
     });
+  });
 
-    switch (sortSelect.value) {
-      case "name-asc":
-        filteredInks.sort((a, b) => a.name.localeCompare(b.name));
-        break;
-      case "name-desc":
-        filteredInks.sort((a, b) => b.name.localeCompare(a.name));
-        break;
-      case "brand-asc":
-        filteredInks.sort((a, b) => a.brand.localeCompare(b.brand));
-        break;
-      case "brand-desc":
-        filteredInks.sort((a, b) => b.brand.localeCompare(a.brand));
-        break;
-    }
+  // Effektfilter
+  const effectFilters = document.querySelector("#effect-filter");
+  const effects = ["Shimmer", "Sheen"];
 
-    renderInks(filteredInks);
+  effects.forEach((effect) => {
+    const effectInput = document.createElement("input");
+    const effectLabel = document.createElement("label");
+    const effectItem = document.createElement("li");
+
+    effectInput.type = "checkbox";
+    effectInput.id = effect;
+    effectInput.name = "effect";
+    effectInput.value = effect;
+
+    effectLabel.textContent = effect;
+    effectLabel.setAttribute("for", effect);
+
+    effectItem.appendChild(effectInput);
+    effectItem.appendChild(effectLabel);
+
+    const effectsOptions = effectFilters.querySelector("ul");
+    effectsOptions.appendChild(effectItem);
+  });
+
+  const effectInputs = document.querySelectorAll('input[name="effect"]');
+
+  effectInputs.forEach((input) => {
+    input.addEventListener("change", () => {
+      filterInks();
+    });
+  });
+
+  // Shading-filter
+  const shadingFilters = document.querySelector("#shading-filter");
+  const shadingLevels = ["None", "Low", "Medium", "High"];
+
+  shadingLevels.forEach((level) => {
+    const shadingInput = document.createElement("input");
+    const shadingLabel = document.createElement("label");
+    const shadingItem = document.createElement("li");
+
+    shadingInput.type = "checkbox";
+    shadingInput.id = level;
+    shadingInput.name = "shading";
+    shadingInput.value = level;
+
+    shadingLabel.textContent = level;
+    shadingLabel.setAttribute("for", level);
+
+    shadingItem.appendChild(shadingInput);
+    shadingItem.appendChild(shadingLabel);
+
+    const shadingOptions = shadingFilters.querySelector("ul");
+    shadingOptions.appendChild(shadingItem);
+  });
+
+  const shadingInputs = document.querySelectorAll('input[name="shading"]');
+
+  shadingInputs.forEach((input) => {
+    input.addEventListener("change", () => {
+      filterInks();
+    });
+  });
+
+  // Dropdown-toggle
+  const filterDropdowns = document.querySelectorAll("#ink-filters details");
+  filterDropdowns.forEach((dropdown) => {
+    dropdown.addEventListener("toggle", () => {
+      if (dropdown.open) {
+        filterDropdowns.forEach((otherDropdown) => {
+          if (otherDropdown !== dropdown) {
+            otherDropdown.removeAttribute("open");
+          }
+        });
+      }
+    });
+  });
+
+  // Sökfält
+  const searchInput = document.querySelector("#search-input");
+  searchInput.addEventListener("input", () => {
+    filterInks();
+  });
+
+  // Sortering
+  const sortSelect = document.querySelector("#sort-select");
+
+  sortSelect.addEventListener("change", () => {
+    filterInks();
+  });
+
+  // Filterfunktion
+  function filterInks() {
+
+    const searchTerm = searchInput.value.toLowerCase();
+
+    const selectedColours = Array.from(colourInputs)
+      .filter((input) => input.checked)
+      .map((input) => input.value);
+
+    const selectedEffects = Array.from(effectInputs)
+      .filter((input) => input.checked)
+      .map((input) => input.value);
+
+    const selectedShading = Array.from(shadingInputs)
+      .filter((input) => input.checked)
+      .map((input) => input.value);
+
+      const filteredInks = inkDatabase.filter((ink) => {
+        // Färg
+        const colourMatch = 
+        selectedColours.length === 0 || 
+        selectedColours.includes(ink.colour);
+
+        // Effekter
+        const effectMatch = 
+        selectedEffects.length === 0 || 
+        selectedEffects.some((effect) => {
+          if (effect === "Shimmer") return ink.shimmer;
+          if (effect === "Sheen") return ink.sheen;
+        });
+
+        // Shading
+        const shadingMatch = 
+        selectedShading.length === 0 || 
+        selectedShading.includes(ink.shading);
+
+        // Sökterm
+        const searchMatch =
+        searchTerm === "" ||
+        ink.name.toLowerCase().includes(searchTerm) ||
+        ink.brand.toLowerCase().includes(searchTerm);
+
+        return colourMatch && effectMatch && shadingMatch && searchMatch;
+
+      });
+
+      switch (sortSelect.value) {
+        case "name-asc":
+          filteredInks.sort((a, b) => a.name.localeCompare(b.name));
+          break;
+        case "name-desc":
+          filteredInks.sort((a, b) => b.name.localeCompare(a.name));
+          break;
+        case "brand-asc":
+          filteredInks.sort((a, b) => a.brand.localeCompare(b.brand));
+          break;
+        case "brand-desc":
+          filteredInks.sort((a, b) => b.brand.localeCompare(a.brand));
+          break;
+      }
+
+      renderInks(filteredInks, browseInks);
+  }
+}
+
+// ==== 3. My Library specifik kod ====
+function initMyLibrary() {
+  const ownedPreview = document.querySelector("#owned-preview");
+  const wishlistPreview = document.querySelector("#wishlist-preview");
+  const currentlyInkedPreview = document.querySelector("#currently-inked-preview");
+
+  const ownedInks = getInksByIds(myLibrary.owned);
+  const wishlistInks = getInksByIds(myLibrary.wishlist);
+  const currentlyInked = getInksByIds(myLibrary.currentlyInked);
+
+  if (!renderEmptyState(ownedInks, ownedPreview, "No inks in your library yet.")) {
+    renderInks(ownedInks.slice(0, 2), ownedPreview);
+  }
+
+  if (!renderEmptyState(wishlistInks, wishlistPreview, "Your wishlist is empty.")) {
+    renderInks(wishlistInks.slice(0, 2), wishlistPreview);
+  }
+
+  if (
+    !renderEmptyState(
+      currentlyInked, currentlyInkedPreview,
+      "No pens are currently inked."
+    )
+  ) {
+    renderInks(currentlyInked, currentlyInkedPreview);
+  }
+}
+
+if (document.querySelector("#browse-inks")) {
+  initBrowse();
+}
+
+if (document.querySelector("#library")) {
+  initMyLibrary();
 }

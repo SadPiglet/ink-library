@@ -126,9 +126,20 @@ const inkDatabase = [
 ];
 
 // ==== MY LIBRARY DATABASE ====
-const myLibrary = {
+let myLibrary = {
   owned: [],
   wishlist: [],
   currentlyInked: [],
   favouriteOfTheMonth: null,
 };
+
+function saveLibrary() {
+  const libraryJSON = JSON.stringify(myLibrary);
+  localStorage.setItem("myLibrary", libraryJSON);
+}
+
+const savedLibrary = localStorage.getItem("myLibrary");
+
+if (saveLibrary) {
+  myLibrary = JSON.parse(savedLibrary);
+}
