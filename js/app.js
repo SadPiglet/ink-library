@@ -379,6 +379,14 @@ function initOwned() {
   renderInks(ownedInks, ownedContainer, true);
 }
 
+// ==== 5. Currently inked specifik kod ====
+function initCurrentlyInked() {
+  const currentlyInkedContainer = document.querySelector("#currently-inked-inks");
+  const currentlyInked = getInksByIds(myLibrary.currentlyInked);
+
+  renderInks(currentlyInked, currentlyInkedContainer, true);
+}
+
 if (document.querySelector("#browse-inks")) {
   initBrowse();
 }
@@ -389,4 +397,8 @@ if (document.querySelector("#library")) {
 
 if (document.querySelector("#owned-inks")) {
   initOwned();
+}
+
+if (document.querySelector("#currently-inked-inks")) {
+  initCurrentlyInked();
 }
