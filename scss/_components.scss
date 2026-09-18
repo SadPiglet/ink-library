@@ -260,8 +260,10 @@ details summary::-webkit-details-marker {
 // CONTACT FORM
 
 #contact {
+  max-width: 700px;
+  margin: 0 auto;
+  
   form {
-    max-width: 700px;
     margin: $spacing-large auto;
     display: flex;
     flex-direction: column;
@@ -318,5 +320,22 @@ details summary::-webkit-details-marker {
         outline-offset: 2px;
       }
     }
+  }
+}
+
+.contact-info {
+  max-width: 700px;
+  margin: 0 auto $spacing-large;
+
+  h2 {
+    margin-bottom: $spacing-small;
+  }
+
+  p {
+    margin-bottom: $spacing-medium;
+  }
+
+  ul {
+    padding-left: $spacing-large;
   }
 }
