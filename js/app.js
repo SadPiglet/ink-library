@@ -1,7 +1,7 @@
 // ==== 1. Gemensamma funktioner ====
 
 // Skapa och rendera ink cards
-function renderInks(inks, container) {
+function renderInks(inks, container, showCurrentlyInked = false) {
   container.textContent = "";
   inks.forEach((ink) => {
     const inkCard = document.createElement("div");
@@ -51,6 +51,37 @@ function renderInks(inks, container) {
 
     inkCard.appendChild(wishlistBtn);
     inkCard.appendChild(ownedBtn);
+    
+    if (showCurrentlyInked) {
+      const currentlyInkedBtn = document.createElement("button");
+
+      currentlyInkedBtn.textContent = "+ Add to pen";
+
+      if (myLibrary.currentlyInked.includes(ink.id)) {
+        currentlyInkedBtn.textContent = "Remove from pen";
+      }
+
+      inkCard.appendChild(currentlyInkedBtn);
+
+      currentlyInkedBtn.addEventListener("click", () => {
+        if (myLibrary.currentlyInked.includes(ink.id)) {
+          myLibrary.currentlyInked = myLibrary.currentlyInked.filter((id) => id !== ink.id);
+        } else {
+          myLibrary.currentlyInked.push(ink.id);
+        }
+
+        saveLibrary();
+
+        if (myLibrary.currentlyInked.includes(ink.id)) {
+          currentlyInkedBtn.textContent = "Remove from pen";
+        } else {
+          currentlyInkedBtn.textContent = "+ Add to pen";
+        }
+      });
+      
+    }
+
+
 
     wishlistBtn.addEventListener("click", () => {
       if (myLibrary.wishlist.includes(ink.id)) {
@@ -335,8 +366,17 @@ function initMyLibrary() {
       "No pens are currently inked."
     )
   ) {
-    renderInks(currentlyInked, currentlyInkedPreview);
+    renderInks(currentlyInked.slice(0, 2), currentlyInkedPreview, true);
   }
+}
+
+// ==== 4. Owned specifik kod ====
+function initOwned() {
+  const ownedContainer = document.querySelector("#owned-inks");
+
+  const ownedInks = getInksByIds(myLibrary.owned);
+
+  renderInks(ownedInks, ownedContainer, true);
 }
 
 if (document.querySelector("#browse-inks")) {
@@ -345,4 +385,8 @@ if (document.querySelector("#browse-inks")) {
 
 if (document.querySelector("#library")) {
   initMyLibrary();
+}
+
+if (document.querySelector("#owned-inks")) {
+  initOwned();
 }
